@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Personaje from "../Classes/Personaje.js";
 import ButtonComponent from "./ButtonComponent.js";
 import getIndividualProperties from "../Utilities/getIndividualProperties.js";
@@ -12,21 +13,21 @@ class CharacterCardComponent {
 
     this.generatreHTML(character);
     this.generateActionButtons(character);
-    this.renderIndividualProperties(individualProperties);
+    this.renderIndividualProperties(individualProperties, character);
   }
 
-  generatreHTML(personaje) {
+  generatreHTML(character) {
     this.element.innerHTML = `
         <div class="card character__card">
-            <img src="img/${personaje.nombre.toLowerCase()}.jpg"
+            <img src="img/${character.nombre.toLowerCase()}.jpg"
               alt="Cara del personaje"
               class="character__picture card-img-top"/>
             <div class="card-body">
               <h2 class="character__name card-title
-              h4">${personaje.nombre} ${personaje.familia} </h2>
+              h4">${character.nombre} ${character.familia} </h2>
               <div class="character__info">
                 <ul class="list-unstyled">
-                  <li>Edad: ${personaje.edad} años</li>
+                  <li>Edad: ${character.edad} años</li>
                   <li>
                     Estado:
                   </li>
@@ -42,7 +43,7 @@ class CharacterCardComponent {
         </div>`;
   }
 
-  generateActionButtons(personaje) {
+  generateActionButtons(character) {
     const picture = this.element.querySelector(".character__picture");
     const buttonsWrapper = this.element.querySelector(".character__actions");
     const dieButton = new ButtonComponent(
@@ -51,7 +52,7 @@ class CharacterCardComponent {
       "muere",
       () => {
         picture.classList.add("character__picture--dead");
-        personaje.muere();
+        character.muere();
       }
     );
     const hablaButton = new ButtonComponent(
@@ -61,11 +62,11 @@ class CharacterCardComponent {
       () => {
         const communicationsWrapper = document.querySelector(".comunications");
         const textDisplay = document.querySelector(".comunications__text");
-        textDisplay.textContent = personaje.comunicar();
+        textDisplay.textContent = character.comunicar();
         const communicationsPicture = document.querySelector(
           ".comunications__picture"
         );
-        communicationsPicture.src = `/img/${personaje.nombre.toLowerCase()}.jpg`;
+        communicationsPicture.src = `/img/${character.nombre.toLowerCase()}.jpg`;
         communicationsWrapper.classList.add("on");
         setTimeout(() => {
           communicationsWrapper.classList.remove("on");
@@ -74,13 +75,14 @@ class CharacterCardComponent {
     );
   }
 
-  renderIndividualProperties(individualProperties) {
+  renderIndividualProperties(individualProperties, character) {
     const ulListElement = this.element.querySelector(
       ".character__overlay .list-unstyled"
     );
     individualProperties.forEach((property) => {
+      console.log(character[property]);
       const individualPropertyItem = document.createElement("li");
-      individualPropertyItem.innerText = property.name;
+      individualPropertyItem.textContent = property;
       ulListElement.appendChild(individualPropertyItem);
     });
   }
