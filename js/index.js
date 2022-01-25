@@ -4,8 +4,6 @@ import setPersonajes from "./personajes.js";
 
 setPersonajes.forEach((character) => {
   const individualProperties = getIndividualProperties(character);
-  const renderCharacterCard = new CharacterCardComponent(
-    character,
-    individualProperties
-  );
+  // eslint-disable-next-line no-new
+  new CharacterCardComponent(character, individualProperties);
 });
