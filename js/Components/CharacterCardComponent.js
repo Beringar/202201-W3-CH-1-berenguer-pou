@@ -1,3 +1,6 @@
+import Personaje from "../Classes/Personaje.js";
+import ButtonComponent from "./ButtonComponent.js";
+
 class CharacterCardComponent {
   element;
 
@@ -7,6 +10,7 @@ class CharacterCardComponent {
     document.querySelector(".characters-list").append(this.element);
 
     this.generatreHTML(character);
+    this.generateActionButtons(character);
   }
 
   generatreHTML(personaje) {
@@ -30,12 +34,43 @@ class CharacterCardComponent {
                 <ul class="list-unstyled">
                 </ul>
                 <div class="character__actions">
-                  <button class="character__action btn">habla</button>
-                  <button class="character__action btn">muere</button>
                 </div>
               </div>
             </div>
         </div>`;
   }
+
+  generateActionButtons(personaje) {
+    const picture = this.element.querySelector(".character__picture");
+    const buttonsWrapper = this.element.querySelector(".character__actions");
+    const dieButton = new ButtonComponent(
+      buttonsWrapper,
+      "character__action btn",
+      "muere",
+      () => {
+        picture.classList.add("character__picture--dead");
+        personaje.muere();
+      }
+    );
+    const hablaButton = new ButtonComponent(
+      buttonsWrapper,
+      "character__action btn",
+      "habla",
+      () => {
+        const communicationsWrapper = document.querySelector(".comunications");
+        const textDisplay = document.querySelector(".comunications__text");
+        textDisplay.textContent = personaje.comunicar();
+        const communicationsPicture = document.querySelector(
+          ".comunications__picture"
+        );
+        communicationsPicture.src = `/img/${personaje.nombre.toLowerCase()}.jpg`;
+        communicationsWrapper.classList.add("on");
+        setTimeout(() => {
+          communicationsWrapper.classList.remove("on");
+        }, 2000);
+      }
+    );
+  }
 }
+
 export default CharacterCardComponent;
