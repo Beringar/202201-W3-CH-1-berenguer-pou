@@ -1,5 +1,6 @@
-import characterList from "./personajes.js";
+import CharacterCardComponent from "./Components/CharacterCardComponent.js";
+import setPersonajes from "./personajes.js";
 
-const appContainer = document.querySelector(".app");
-
-appContainer.append(characterList);
+setPersonajes.forEach((character) => {
+  const renderCharacterCard = new CharacterCardComponent(character);
+});
