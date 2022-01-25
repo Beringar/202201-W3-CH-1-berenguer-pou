@@ -50,6 +50,18 @@ body {
   pointer-events: none;
   transition: all 0.2s;
 }
+
+.list-unstyled__label {
+  text-transform: uppercase;
+  padding-right: 6px;
+  font-weight: 300;
+  font-weight: 15px;
+}
+.list-unstyled__value {
+  ont-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
 .character:nth-child(even) .character__overlay {
   top: 100%;
 }

@@ -7,7 +7,10 @@ const getIndividualProperties = (character) => {
   return customProperties
     .filter((property) => !inheritedProperties.includes(property))
     .map((property) => {
-      if (property instanceof Luchador || property instanceof Asesor) {
+      if (
+        character[property] instanceof Luchador ||
+        character[property] instanceof Asesor
+      ) {
         return { label: property, value: character[property].nombre };
       }
       return { label: property, value: character[property] };

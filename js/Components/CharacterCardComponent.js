@@ -80,8 +80,10 @@ class CharacterCardComponent {
       ".character__overlay .list-unstyled"
     );
     individualProperties.forEach((property) => {
+      let label = property.label.replace("ny", "ñ").split(/(?<!^)(?=[A-Z])/);
+      label = label.reduce((acc, word) => `${acc} ${word.toLowerCase()}`, "");
       const individualPropertyItem = document.createElement("li");
-      individualPropertyItem.textContent = `${property.label}: ${property.value}`;
+      individualPropertyItem.innerHTML = `<span class="list-unstyled__label">${label}:</span></span><span class="list-unstyled__value">${property.value}</span>`;
       ulListElement.appendChild(individualPropertyItem);
     });
   }
