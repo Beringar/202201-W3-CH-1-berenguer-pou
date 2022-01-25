@@ -1,16 +1,18 @@
 import Personaje from "../Classes/Personaje.js";
 import ButtonComponent from "./ButtonComponent.js";
+import getIndividualProperties from "../Utilities/getIndividualProperties.js";
 
 class CharacterCardComponent {
   element;
 
-  constructor(character) {
+  constructor(character, individualProperties) {
     this.element = document.createElement("li");
     this.element.className = "character col";
     document.querySelector(".characters-list").append(this.element);
 
     this.generatreHTML(character);
     this.generateActionButtons(character);
+    this.renderIndividualProperties(individualProperties);
   }
 
   generatreHTML(personaje) {
@@ -70,6 +72,17 @@ class CharacterCardComponent {
         }, 2000);
       }
     );
+  }
+
+  renderIndividualProperties(individualProperties) {
+    const ulListElement = this.element.querySelector(
+      ".character__overlay .list-unstyled"
+    );
+    individualProperties.forEach((property) => {
+      const individualPropertyItem = document.createElement("li");
+      individualPropertyItem.innerText = property.name;
+      ulListElement.appendChild(individualPropertyItem);
+    });
   }
 }
 
