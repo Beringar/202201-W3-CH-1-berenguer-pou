@@ -11,12 +11,12 @@ class CharacterCardComponent {
     this.element.className = "character col";
     document.querySelector(".characters-list").append(this.element);
 
-    this.generatreHTML(character);
+    this.generateHTML(character);
     this.generateActionButtons(character);
     this.renderIndividualProperties(individualProperties, character);
   }
 
-  generatreHTML(character) {
+  generateHTML(character) {
     this.element.innerHTML = `
         <div class="card character__card">
             <img src="img/${character.nombre.toLowerCase()}.jpg"
@@ -80,9 +80,8 @@ class CharacterCardComponent {
       ".character__overlay .list-unstyled"
     );
     individualProperties.forEach((property) => {
-      console.log(character[property]);
       const individualPropertyItem = document.createElement("li");
-      individualPropertyItem.textContent = property;
+      individualPropertyItem.textContent = `${property.label}: ${property.value}`;
       ulListElement.appendChild(individualPropertyItem);
     });
   }
