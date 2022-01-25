@@ -14,6 +14,7 @@ class CharacterCardComponent {
     this.generateHTML(character);
     this.generateActionButtons(character);
     this.renderIndividualProperties(individualProperties, character);
+    this.setLifeStatus(character);
   }
 
   generateHTML(character) {
@@ -30,6 +31,7 @@ class CharacterCardComponent {
                   <li>Edad: ${character.edad} años</li>
                   <li>
                     Estado:
+                    <i class="life-status fas fa-thumbs-up"></i>
                   </li>
                 </ul>
               </div>
@@ -41,6 +43,17 @@ class CharacterCardComponent {
               </div>
             </div>
         </div>`;
+  }
+
+  setLifeStatus(character) {
+    const lifeStatusIconElement = this.element.querySelector(".life-status");
+    if (character.vivo) {
+      lifeStatusIconElement.classList.add("fa-thumbs-up");
+      lifeStatusIconElement.classList.remove("fa-thumbs-down");
+    } else {
+      lifeStatusIconElement.classList.add("fa-thumbs-doww");
+      lifeStatusIconElement.classList.remove("fa-thumbs-up");
+    }
   }
 
   generateActionButtons(character) {
