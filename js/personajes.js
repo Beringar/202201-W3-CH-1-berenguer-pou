@@ -1,14 +1,16 @@
-import CharacterComponent from "./Components/CharacterComponent.js";
+import Rey from "./Classes/Rey.js";
+import Luchador from "./Classes/Luchador.js";
+import Asesor from "./Classes/Asesor.js";
+import Escudero from "./Classes/Escudero.js";
 
-const characterList = document.createElement("ul");
+const setPersonajes = [];
 
-characterList.className = "characters-list row list-unstyled";
+const joffrey = new Rey("Joffrey", "Baratheon", 16, 2);
+const jaime = new Luchador("Jaime", "Lannister", 45, "Espada", 7);
+const daenerys = new Luchador("Daenerys", "Targaryen", 30, "Dragones", 10);
+const tyrion = new Asesor("Tyrion", "Lannister", 40, daenerys);
+const bronn = new Escudero("Bronn", "AguasNegras", 54, 0, jaime);
 
-const personajeTEST = new CharacterComponent(characterList, "character col");
-const personajeTEST1 = new CharacterComponent(characterList, "character col");
-const personajeTEST2 = new CharacterComponent(characterList, "character col");
-const personajeTEST3 = new CharacterComponent(characterList, "character col");
-const personajeTEST4 = new CharacterComponent(characterList, "character col");
-const personajeTEST5 = new CharacterComponent(characterList, "character col");
+setPersonajes.push(joffrey, jaime, daenerys, tyrion, bronn);
 
-export default characterList;
+export default setPersonajes;
