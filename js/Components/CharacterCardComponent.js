@@ -12,7 +12,7 @@ class CharacterCardComponent {
 
   constructor(character, individualProperties) {
     this.element = document.createElement("li");
-    this.element.className = "character col";
+    this.element.className = "character";
     document.querySelector(".characters-list").append(this.element);
 
     this.generateHTML(character);
@@ -47,7 +47,6 @@ class CharacterCardComponent {
                 </div>
               </div>
             </div>
-            <i class="emoji-type-icon"></i>
         </div>`;
   }
 
@@ -113,6 +112,7 @@ class CharacterCardComponent {
     );
 
     const typeIcon = document.createElement("i");
+    typeIcon.className = "emoji";
     emojiTypeWrapper.append(typeIcon);
     if (character.constructor.name === "Asesor") typeIcon.textContent = "🎓";
     else if (character.constructor.name === "Luchador")

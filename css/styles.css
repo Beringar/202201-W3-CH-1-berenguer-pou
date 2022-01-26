@@ -3,13 +3,19 @@ body {
   overflow: hidden;
 }
 .characters-list {
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   max-width: 100%;
   min-height: 100vh;
   align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 12px;
+  align-content: center;
 }
+
 .character {
-  width: 20%;
+  width: 200px;
   flex-basis: auto;
   flex-grow: 0;
 }
@@ -116,4 +122,5 @@ body {
   position: absolute;
   right: 5px;
   top: 5px;
+  font-size: 1.2rem;
 }
