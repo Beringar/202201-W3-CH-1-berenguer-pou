@@ -1,7 +1,11 @@
 /* eslint-disable no-unused-vars */
 import Personaje from "../Classes/Personaje.js";
 import ButtonComponent from "./ButtonComponent.js";
-import getIndividualProperties from "../Utilities/getIndividualProperties.js";
+// import getIndividualProperties from "../Utilities/getIndividualProperties.js";
+import Asesor from "../Classes/Asesor.js";
+import Luchador from "../Classes/Luchador.js";
+import Rey from "../Classes/Rey.js";
+import Escudero from "../Classes/Escudero.js";
 
 class CharacterCardComponent {
   element;
@@ -15,6 +19,7 @@ class CharacterCardComponent {
     this.generateActionButtons(character);
     this.renderIndividualProperties(individualProperties, character);
     this.setLifeStatus(character);
+    this.setCharacterType(character);
   }
 
   generateHTML(character) {
@@ -42,6 +47,7 @@ class CharacterCardComponent {
                 </div>
               </div>
             </div>
+            <i class="emoji-type-icon"></i>
         </div>`;
   }
 
@@ -99,6 +105,21 @@ class CharacterCardComponent {
       individualPropertyItem.innerHTML = `<span class="list-unstyled__label">${label}:</span></span><span class="list-unstyled__value">${property.value}</span>`;
       ulListElement.appendChild(individualPropertyItem);
     });
+  }
+
+  setCharacterType(character) {
+    const emojiTypeWrapper = this.element.querySelector(
+      ".card.character__card"
+    );
+
+    const typeIcon = document.createElement("i");
+    emojiTypeWrapper.append(typeIcon);
+    if (character.constructor.name === "Asesor") typeIcon.textContent = "🎓";
+    else if (character.constructor.name === "Luchador")
+      typeIcon.textContent = "🗡";
+    else if (character.constructor.name === "Rey") typeIcon.textContent = "👑";
+    else if (character.constructor.name === "Escudero")
+      typeIcon.textContent = "🛡";
   }
 }
 
